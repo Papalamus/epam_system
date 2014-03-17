@@ -1,0 +1,6 @@
+C:\Для дела\Проекты\epam_training\epam_system\Test_project\Test_project\bin\Debug\Test_project.exe.config
+C:\Для дела\Проекты\epam_training\epam_system\Test_project\Test_project\bin\Debug\Test_project.exe
+C:\Для дела\Проекты\epam_training\epam_system\Test_project\Test_project\bin\Debug\Test_project.pdb
+C:\Для дела\Проекты\epam_training\epam_system\Test_project\Test_project\obj\Debug\Test_project.csprojResolveAssemblyReference.cache
+C:\Для дела\Проекты\epam_training\epam_system\Test_project\Test_project\obj\Debug\Test_project.exe
+C:\Для дела\Проекты\epam_training\epam_system\Test_project\Test_project\obj\Debug\Test_project.pdb
