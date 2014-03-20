@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Test_project.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class)]
-    public sealed class LoggingFrom : System.Attribute
+    [AttributeUsage(AttributeTargets.Class|AttributeTargets.Field|AttributeTargets.Property)]
+    class MyOrmAttribute : System.Attribute
     {
     }
 }

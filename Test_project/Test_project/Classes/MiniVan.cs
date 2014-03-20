@@ -10,7 +10,9 @@ namespace Test_project.Classes
     class MiniVan : Car
     {
 
+
         [Overrided]
+        
         public  void TakeARide(int speedy , string errMsg)
         {
             if (speedy > 70)

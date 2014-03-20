@@ -13,7 +13,10 @@ namespace Test_project
     {
         static void Main(string[] args)
         {
-            ClassInspector.Inspect(Assembly.GetAssembly(typeof(Car)));
+            Car c = new Car(5);
+            AssemblyInspector ai = new AssemblyInspector(Assembly.GetAssembly(typeof(Program)));
+            string result = ai.StoreObject(c);
+            Console.WriteLine(result);
             Console.ReadLine();
         }
     }

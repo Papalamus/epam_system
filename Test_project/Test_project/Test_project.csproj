@@ -41,12 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\LoggingFrom.cs" />
+    <Compile Include="Attributes\LoggingAttribute.cs" />
+    <Compile Include="Attributes\MyOrmAttribute.cs" />
     <Compile Include="Attributes\OverridedAttribute.cs" />
     <Compile Include="Classes\Car.cs" />
     <Compile Include="Classes\MiniVan.cs" />
     <Compile Include="Classes\SportCar.cs" />
-    <Compile Include="ClassInspector.cs" />
+    <Compile Include="AssemblyInspector.cs" />
     <Compile Include="ExctensionClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
