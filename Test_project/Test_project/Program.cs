@@ -5,19 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 using Test_project.Attributes;
 using Test_project.Classes;
+using Test_project.DataBase;
 using System.Reflection;
 
 namespace Test_project
 {
     class Program
     {
+        /*
         static void Main(string[] args)
         {
-            Car c = new Car(5);
-            AssemblyInspector ai = new AssemblyInspector(Assembly.GetAssembly(typeof(Program)));
-            string result = ai.StoreObject(c);
-            Console.WriteLine(result);
-            Console.ReadLine();
+            //Test.MakeDbFile(@"Data.txt", Test.getTestList());
+            IPersonConnecter DB = new FileDB(@"Data.txt");
+            foreach (var element in DB.GetAll())
+            {
+                Console.WriteLine(element);
+            }
+            Console.ReadKey();
         }
+         */
     }
 }
