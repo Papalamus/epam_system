@@ -26,14 +26,18 @@ namespace Test_project.DataBase
             MakeDbFile(pathDB, t1);
         }
 
+        public List<Person> T1
+        {
+            get { return t1; }
+        }
 
         [Test]
         public void SumOfTwoNumbers()
         {            
             IPersonConnecter[] connectors =
             {
-                new ArrayDB(t1),
-                new FileDB(pathDB)
+                new MemoryConnector(t1),
+                new FileConnector(pathDB)
             };
             List<List<Person>> results = new List<List<Person>>();
             
