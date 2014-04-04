@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Test_project.DataBase
 {
-    interface IPersonConnecter
+    interface IPersonConnecter<T>
     {
-        List<Person> GetAll();
-        Person GetbyName(string Name);
+        List<T> GetAll();
+        T GetbyName(string Name);
         void DeletebyName(string Name);
-        bool Insert(Person p);
+        bool Insert(T p);
     }
     
 }

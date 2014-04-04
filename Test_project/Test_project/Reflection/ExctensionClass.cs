@@ -20,5 +20,22 @@ namespace Test_project
 
             return signature;
         }
+        public static object GetValue(this MemberInfo mi,object obj)
+        {
+            PropertyInfo pi = mi as PropertyInfo;
+            if (pi != null)
+            {
+                 return pi.GetValue(obj);
+            }
+            else
+            {
+                FieldInfo fi = mi as FieldInfo;
+                if (fi != null)
+                {
+                    return fi.GetValue(obj);
+                }
+                else throw new NotSupportedException();
+            }
+        }
     }
 }

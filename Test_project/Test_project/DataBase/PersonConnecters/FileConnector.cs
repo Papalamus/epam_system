@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace Test_project.DataBase
 {
-    class FileConnector :IPersonConnecter
+    class FileConnector :IPersonConnecter<Person>
     {
         XmlSerializer serializer;
         private List<Person> cache;

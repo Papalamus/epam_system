@@ -34,7 +34,7 @@ namespace Test_project.DataBase
         [Test]
         public void SumOfTwoNumbers()
         {            
-            IPersonConnecter[] connectors =
+            IPersonConnecter<Person>[] connectors =
             {
                 new MemoryConnector(t1),
                 new FileConnector(pathDB)

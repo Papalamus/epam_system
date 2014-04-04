@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Test_project.Attributes
 {
-    [AttributeUsage(AttributeTargets.Class|AttributeTargets.Field|AttributeTargets.Property)]
-    class MyOrmAttribute : System.Attribute
+     [AttributeUsage(AttributeTargets.Class)]
+    public sealed class TableOrmSaveAttribute : System.Attribute
     {
+         public string Name { get; set; }
     }
 }

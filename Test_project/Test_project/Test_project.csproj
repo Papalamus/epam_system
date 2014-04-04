@@ -61,25 +61,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asterisk\Task.cs" />
-    <Compile Include="Asterisk\Task1.cs" />
-    <Compile Include="Asterisk\Task2.cs" />
-    <Compile Include="Asterisk\Task3.cs" />
-    <Compile Include="Asterisk\Test.cs" />
+    <Compile Include="Attributes\FieldOrmSave.cs" />
+    <Compile Include="Attributes\TableOrmSave.cs" />
     <Compile Include="DataBase\DataBase.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBase.xsd</DependentUpon>
     </Compile>
     <Compile Include="Attributes\LoggingAttribute.cs" />
-    <Compile Include="Attributes\MyOrmAttribute.cs" />
+    <Compile Include="Attributes\MyAttribute.cs" />
     <Compile Include="Attributes\OverridedAttribute.cs" />
     <Compile Include="Classes\Car.cs" />
     <Compile Include="Classes\MiniVan.cs" />
     <Compile Include="Classes\SportCar.cs" />
     <Compile Include="DataBase\PersonConnecters\AdoConnecter.cs" />
+    <Compile Include="DataBase\PersonConnecters\AdoHelper.cs" />
     <Compile Include="DataBase\PersonConnecters\MemoryConnector.cs" />
     <Compile Include="DataBase\PersonConnecters\FileConnector.cs" />
+    <Compile Include="DataBase\PersonConnecters\MyOrmConnecter.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="DataBase\PersonConnecters\IPersonConnecter.cs" />
     <Compile Include="DataBase\Test.cs" />

@@ -2,35 +2,69 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Common;
-using System.Data.SqlClient;
-using System.Data.SqlServerCe;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Test_project.DataBase.PersonConnecters
 {
-    class AdoConnecter : IPersonConnecter<Person>
+    public delegate void CustomizeCommandHandler(DbCommand command);
+    public delegate void ProcessReaderHandler(DbDataReader reader);
+
+    class AdoHelper
     {
-        private DbProviderFactory dbf;
+        private DbProviderFactory providerFactory;
         private string cnStr;
 
         Random r = new Random();
-        private AdoHelper adoHelper;
 
-        public AdoConnecter()
+        public AdoHelper()
         {
-            adoHelper = new AdoHelper();
+            cnStr = ConfigurationManager.ConnectionStrings["cnString"].ConnectionString;
+            string provider = ConfigurationManager.ConnectionStrings["cnString"].ProviderName;
+            providerFactory = DbProviderFactories.GetFactory(provider);
+        }
+
+        public void ExequteQuery(CustomizeCommandHandler customizeFoo,ProcessReaderHandler readerHandler)
+        {
+            using (DbConnection dbc = providerFactory.CreateConnection())
+            {
+                dbc.ConnectionString = cnStr;
+                dbc.Open();
+                DbCommand command = dbc.CreateCommand();
+                customizeFoo(command);
+                using (DbDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        readerHandler(reader);
+                    }
+                }
+            }
+        }
+        public void ExequteQuery(string commandText, ProcessReaderHandler readerHandler)
+        {
+            ExequteQuery(command => command.CommandText = commandText, readerHandler);
+        }
+
+        public void ExuquteNonQuery(CustomizeCommandHandler customizeFoo)
+        {
+            using (DbConnection dbc = providerFactory.CreateConnection())
+            {
+                dbc.ConnectionString = cnStr;
+                dbc.Open();
+                DbCommand command = dbc.CreateCommand();
+                customizeFoo(command);
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void ExuquteNonQuery(string commandText)
+        {
+            ExuquteNonQuery(command => command.CommandText = commandText);
         }
         
-        public List<Person> GetAll()
-        {
-            List<Person> result = new List<Person>();
-            adoHelper.ExequteQuery("Select * from Person",(reader) => 
-                        result.Add(ReadPerson(reader)));
-            return result;
-        }
-
         private Person ReadPerson(DbDataReader reader)
         {
             int age = int.Parse(reader["Age"].ToString());
@@ -46,24 +80,39 @@ namespace Test_project.DataBase.PersonConnecters
 
         public Person GetbyName(string Name)
         {
-            Person result;
-            string statement = "Select * from Person where name = @Name";
-            adoHelper.ExequteQuery(command =>
+            using (DbConnection dbc = providerFactory.CreateConnection())
             {
+                dbc.ConnectionString = cnStr;
+                dbc.Open();
+                DbCommand command = dbc.CreateCommand();
+                
+                string statement = "Select * from Person where name = @Name";
                 command.CommandText = statement;
+                
                 DbParameter param1 = command.CreateParameter();
                 param1.ParameterName = "@Name";
                 param1.Value = Name;
+
                 command.Parameters.Add(param1);
-            }, reader => {
-                             result = ReadPerson(reader);
-            });
+
+                using (DbDataReader reader = command.ExecuteReader())
+                {
+                    reader.Read();
+                    return ReadPerson(reader);
+
+                }
+            }
+
         }
-        
+
         public void DeletebyName(string Name)
         {
-            adoHelper.ExuquteNonQuery(command =>
+            using (DbConnection dbc = providerFactory.CreateConnection())
             {
+                dbc.ConnectionString = cnStr;
+                dbc.Open();
+                DbCommand command = dbc.CreateCommand();
+
                 string statement = "Delete from Person where name = @Name";
                 command.CommandText = statement;
 
@@ -72,15 +121,15 @@ namespace Test_project.DataBase.PersonConnecters
                 param1.Value = Name;
 
                 command.Parameters.Add(param1);
-            });
 
+                command.ExecuteNonQuery();
                 
+            }
         }
 
         public bool Insert(Person p)
         {
-
-            using (DbConnection dbc = dbf.CreateConnection())
+            using (DbConnection dbc = providerFactory.CreateConnection())
             {
                 dbc.ConnectionString = cnStr;
                 dbc.Open();

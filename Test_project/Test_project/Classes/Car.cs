@@ -7,7 +7,7 @@ using Test_project.Attributes;
 
 namespace Test_project.Classes
 {
-    [MyOrm]
+    [My]
     [LoggingAttribute]
     class Car
     {
@@ -20,7 +20,7 @@ namespace Test_project.Classes
         }
 
 
-        [MyOrm]
+        [My]
         public int Passengers { get; set; }
         public void TakeARide(int speed)
         {

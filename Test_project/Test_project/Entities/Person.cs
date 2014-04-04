@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Test_project.Attributes;
 
 namespace Test_project.DataBase
 {
     [Serializable]
+    [TableOrmSave(Name = "PersonTable")]
     public class Person
     {
+        [FieldOrmSave(Name ="AgeField",type = typeof(int))]
         public int Age { get; set; }
+        [FieldOrmSave(Name = "NameField", type = typeof(string))]
         public string Name { get; set; }
+        [FieldOrmSave(Name = "SurnameField", type = typeof(string))]
         public string Surname { get; set; }
         public string Adress { get; set; }
         public int INN { get; set; }

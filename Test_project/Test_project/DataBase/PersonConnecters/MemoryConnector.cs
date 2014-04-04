@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test_project.DataBase
 {
-    class MemoryConnector :IPersonConnecter
+    class MemoryConnector :IPersonConnecter<Person>
     {
         List<Person> DB ;
         public MemoryConnector(List<Person> DB)

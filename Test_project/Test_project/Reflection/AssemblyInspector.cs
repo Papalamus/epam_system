@@ -66,10 +66,10 @@ namespace Test_project
         {
             Type t = obj.GetType();
            
-            if (!CheckAttribute(t, typeof(MyOrmAttribute)))
+            if (!CheckAttribute(t, typeof(MyAttribute)))
                 return ;
             var fields = from f in t.GetFields()
-                                where CheckAttribute(f, typeof(MyOrmAttribute))
+                                where CheckAttribute(f, typeof(MyAttribute))
                                 select f;
 
             foreach (var f in fields)
@@ -77,7 +77,7 @@ namespace Test_project
                 processField(f, insertParams, obj);     
             }
             var properties = from f in t.GetProperties()
-                         where CheckAttribute(f, typeof(MyOrmAttribute))
+                         where CheckAttribute(f, typeof(MyAttribute))
                          select f;
             
             foreach (var p in properties)
