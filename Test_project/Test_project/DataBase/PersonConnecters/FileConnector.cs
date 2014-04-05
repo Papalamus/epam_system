@@ -43,13 +43,15 @@ namespace Test_project.DataBase
             return Cache;
         }
 
-        public Person GetbyName(string Name)
+        public Person GetbyID(object id)
         {
+            string Name = id.ToString();
             return Cache.Find((i) => i.Name == Name);
         }
 
-        public void DeletebyName(string Name)
+        public void DeletebyID(object id)
         {
+            string Name = id.ToString();
             Cache.Remove(Cache.Find((i) => i.Name == Name));
             WriteChanges();
         }

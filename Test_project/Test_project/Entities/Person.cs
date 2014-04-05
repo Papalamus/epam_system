@@ -11,6 +11,7 @@ namespace Test_project.DataBase
     [TableOrmSave(Name = "PersonTable")]
     public class Person
     {
+
         [FieldOrmSave(Name ="AgeField",type = typeof(int))]
         public int Age { get; set; }
         [FieldOrmSave(Name = "NameField", type = typeof(string))]
@@ -18,6 +19,7 @@ namespace Test_project.DataBase
         [FieldOrmSave(Name = "SurnameField", type = typeof(string))]
         public string Surname { get; set; }
         public string Adress { get; set; }
+        [IdFieldOrmSave(Name = "Person_id", type = typeof(int))]
         public int INN { get; set; }
         
         //True is Male

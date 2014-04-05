@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Test_project.Attributes
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
-    public sealed class FieldOrmSaveAttribute : System.Attribute
+    public  class FieldOrmSaveAttribute : System.Attribute
     {
         public string Name { get; set; }
         public Type type { get; set; }

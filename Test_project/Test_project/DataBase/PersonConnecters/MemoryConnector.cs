@@ -20,20 +20,26 @@ namespace Test_project.DataBase
             return DB;
         }
 
-        public Person GetbyName(string Name)
-        {
-            return DB.Find((i) => i.Name == Name);
-        }
+        
 
-        public void DeletebyName(string Name)
-        {
-            DB.Remove(DB.Find((i) => i.Name == Name));
-        }
-
+        
         public bool Insert(Person p)
         {
             DB.Add(p);
             return true;
+        }
+
+
+        public Person GetbyID(object ID)
+        {
+            string Name = ID.ToString();
+            return DB.Find((i) => i.Name == Name);
+        }
+
+        public void DeletebyID(object ID)
+        {
+            string Name = ID.ToString();
+            DB.Remove(DB.Find((i) => i.Name == Name));
         }
     }
 }

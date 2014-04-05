@@ -24,9 +24,28 @@ namespace Test_project
             //}
 
             NUnitTests n1 = new NUnitTests();
-            MyOrmConnecter<Person> DB = new MyOrmConnecter<Person>();
+            IPersonConnecter<Person> DB = new MyOrmConnecter<Person>();
+            
+           
+            foreach (var person in DB.GetAll())
+            {
+                Console.WriteLine(person.ToString());
+            }
+            Console.WriteLine("____________________________");
+            DB.Insert(n1.T1[0]);
 
-            Console.WriteLine(DB.MakeInsertString(n1.T1[0],"Person"));
+            foreach (var person in DB.GetAll())
+            {
+                Console.WriteLine(person.ToString());
+            }
+            DB.DeletebyID(n1.T1[0].INN);
+            Console.WriteLine("____________________________");
+            foreach (var person in DB.GetAll())
+            {
+                Console.WriteLine(person.ToString());
+            }
+
+            Console.WriteLine();
             Console.ReadKey();            
             
         //    NUnitTests n1 = new NUnitTests();

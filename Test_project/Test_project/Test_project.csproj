@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\FieldOrmSave.cs" />
+    <Compile Include="Attributes\IdFieldOrmSave.cs" />
     <Compile Include="Attributes\TableOrmSave.cs" />
     <Compile Include="DataBase\DataBase.Designer.cs">
       <AutoGen>True</AutoGen>

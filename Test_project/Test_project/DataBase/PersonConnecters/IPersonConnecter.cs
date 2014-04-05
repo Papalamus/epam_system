@@ -9,8 +9,8 @@ namespace Test_project.DataBase
     interface IPersonConnecter<T>
     {
         List<T> GetAll();
-        T GetbyName(string Name);
-        void DeletebyName(string Name);
+        T GetbyID(object ID);
+        void DeletebyID(object ID);
         bool Insert(T p);
     }
     
