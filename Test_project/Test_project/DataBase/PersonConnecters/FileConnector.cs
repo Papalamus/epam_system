@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Test_project.DataBase.Interface;
+using Test_project.Entities;
 
 namespace Test_project.DataBase
 {
-    class FileConnector :IPersonConnecter<Person>
+    public class FileConnector :IPersonConnecter<Person>
     {
         XmlSerializer serializer;
         private List<Person> cache;

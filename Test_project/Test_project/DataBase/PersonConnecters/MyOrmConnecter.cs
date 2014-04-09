@@ -7,10 +7,11 @@ using System.Text;
 using System.Xml.Linq;
 using NUnit.Framework;
 using Test_project.Attributes;
+using Test_project.DataBase.Interface;
 
 namespace Test_project.DataBase.PersonConnecters
 {
-    class MyOrmConnecter<T>: IPersonConnecter<T>where T:new()
+    public class MyOrmConnecter<T>: IPersonConnecter<T>where T:new()
     {
         
         Dictionary<string, MemberInfo> mappedType = new Dictionary<string, MemberInfo>();

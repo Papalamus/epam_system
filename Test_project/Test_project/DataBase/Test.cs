@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using NUnit.Framework;
+using Test_project.DataBase.Interface;
+using Test_project.Entities;
 
 namespace Test_project.DataBase
 {
@@ -15,11 +17,11 @@ namespace Test_project.DataBase
     {
         const string pathDB = "test.txt";
         List<Person> t1 = new List<Person>(){
-                new Person(16,"Bob","Marley","Jamaica",1122,true,"Singer",0),
-                new Person(39,"Dilan","Volkov","Samara",0697,true,"Manager",20000),
-                new Person(57,"Dilan","Fetroda","Japan",4534,true,"Programmer",  12000),
-                new Person(23,"Peka","Boyarskaya","America",3451,false,"Midnight Dancer",30000),
-                new Person(11,"Jamshut","Azergajiev","Moskow",2234,true,"Worker",40000)
+                new Person(16,"Bob","Marley","Jamaica",1122,"Singer",0),
+                new Person(39,"Dilan","Volkov","Samara",0697,"Manager",20000),
+                new Person(57,"Dilan","Fetroda","Japan",4534,"Programmer",  12000),
+                new Person(23,"Peka","Boyarskaya","America",3451,"Midnight Dancer",30000),
+                new Person(11,"Jamshut","Azergajiev","Moskow",2234,"Worker",40000)
             };
         public NUnitTests()
         {

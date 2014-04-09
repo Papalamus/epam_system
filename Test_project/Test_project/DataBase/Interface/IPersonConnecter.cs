@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test_project.DataBase
+namespace Test_project.DataBase.Interface
 {
-    interface IPersonConnecter<T>
+    public interface IPersonConnecter<T>
     {
         List<T> GetAll();
         T GetbyID(object ID);

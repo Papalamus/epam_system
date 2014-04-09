@@ -28,11 +28,11 @@ namespace Test_project.DataBase.PersonConnecters
 
         public void ExequteQuery(CustomizeCommandHandler customizeFoo, ProcessReaderHandler readerHandler)
         {
-            using (DbConnection dbc = providerFactory.CreateConnection())
+            using (DbConnection connection = providerFactory.CreateConnection())
             {
-                dbc.ConnectionString = cnStr;
-                dbc.Open();
-                DbCommand command = dbc.CreateCommand();
+                connection.ConnectionString = cnStr;
+                connection.Open();
+                DbCommand command = connection.CreateCommand();
                 customizeFoo(command);
                 using (DbDataReader reader = command.ExecuteReader())
                 {
@@ -51,14 +51,17 @@ namespace Test_project.DataBase.PersonConnecters
 
         public void ExequteNonQuery(CustomizeCommandHandler customizeFoo)
         {
-            using (DbConnection dbc = providerFactory.CreateConnection())
+            using (DbConnection connection = providerFactory.CreateConnection())
             {
-                dbc.ConnectionString = cnStr;
-                dbc.Open();
-                DbCommand command = dbc.CreateCommand();
+                
+                connection.ConnectionString = cnStr;
+                connection.Open();
+                DbCommand command = connection.CreateCommand();
                 customizeFoo(command);
                 command.ExecuteNonQuery();
+                
             }
+
         }
 
         public void ExequteNonQuery(string commandText)

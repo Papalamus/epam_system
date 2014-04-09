@@ -72,16 +72,15 @@
     <Compile Include="Attributes\LoggingAttribute.cs" />
     <Compile Include="Attributes\MyAttribute.cs" />
     <Compile Include="Attributes\OverridedAttribute.cs" />
-    <Compile Include="Classes\Car.cs" />
-    <Compile Include="Classes\MiniVan.cs" />
-    <Compile Include="Classes\SportCar.cs" />
     <Compile Include="DataBase\PersonConnecters\AdoConnecter.cs" />
     <Compile Include="DataBase\PersonConnecters\AdoHelper.cs" />
     <Compile Include="DataBase\PersonConnecters\MemoryConnector.cs" />
     <Compile Include="DataBase\PersonConnecters\FileConnector.cs" />
     <Compile Include="DataBase\PersonConnecters\MyOrmConnecter.cs" />
+    <Compile Include="Entities\Article.cs" />
+    <Compile Include="DataBase\Interface\IAdoSaveable.cs" />
     <Compile Include="Entities\Person.cs" />
-    <Compile Include="DataBase\PersonConnecters\IPersonConnecter.cs" />
+    <Compile Include="DataBase\Interface\IPersonConnecter.cs" />
     <Compile Include="DataBase\Test.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -114,7 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataBase\Database1.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

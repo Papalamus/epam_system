@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Test_project.Attributes;
+using Test_project.DataBase.Interface;
+using Test_project.Entities;
 
-namespace Test_project.DataBase
+namespace Test_project.Entities
 {
     [Serializable]
     [TableOrmSave(Name = "PersonTable")]
-    public class Person
+    public class Person : IAdoSaveable
     {
 
         [FieldOrmSave(Name ="AgeField",type = typeof(int))]
@@ -22,20 +25,18 @@ namespace Test_project.DataBase
         [IdFieldOrmSave(Name = "Person_id", type = typeof(int))]
         public int INN { get; set; }
         
-        //True is Male
-        public bool IsMale{ get; set; }
+        
         public string Position { get; set; }
         public int Salary { get; set; }
 
         public Person() { }
         
         public Person(int Age, string Name, string Surname,string Adress,
-            int INN, bool IsMale, string Position,int Salary)
+            int INN,string Position,int Salary)
         {
             this.Adress = Adress;
             this.Age = Age;
             this.INN = INN;
-            this.IsMale = IsMale;
             this.Name = Name;
             this.Position = Position;
             this.Salary = Salary;
@@ -67,7 +68,17 @@ namespace Test_project.DataBase
             return equals;
         }
 
-
+        public void ReadObject(DbDataReader reader)
+        {
+            Age = int.Parse(reader["Age"].ToString());
+            Name = (string)reader["Name"];
+            Surname = (string)reader["Surname"];
+            Adress = (string)reader["Adress"];
+            INN = int.Parse(reader["INN"].ToString());
+            Position = (string)reader["Position"];
+            Salary = int.Parse(reader["Salary"].ToString());
+            
+        }
        
 
         public override string ToString()
@@ -75,5 +86,33 @@ namespace Test_project.DataBase
             return "Name = "+Name+" Surname = "+Surname;
         }
 
+
+        public void SaveObject(DbCommand command, string tableName)
+        {
+            const int fieldCount = 3;
+            command.CommandText = string.Format("Insert into {0}(Age,Name,Surname,Adress,INN,Position,Salary)" +
+                                                " Values (@Age,@Name,@Surname,@Adress,@INN,@Position,@Salary)",tableName);
+            AddParametrs(command, "@INN", INN);
+            AddParametrs(command, "@Name", Name);
+            AddParametrs(command, "@Surname", Surname);
+
+            AddParametrs(command, "@Adress", Adress??"");
+            AddParametrs(command, "@Age", Age);
+            AddParametrs(command, "@Position", Position ?? "");
+            AddParametrs(command, "@Salary", Salary);
+        }
+
+        public void AddParametrs(DbCommand command, string name, object value)
+        {
+            var parametr = command.CreateParameter();
+            parametr.ParameterName = name;
+            parametr.Value = value;
+            command.Parameters.Add(parametr);
+        }
+        
+
+
     }
 }
+
+

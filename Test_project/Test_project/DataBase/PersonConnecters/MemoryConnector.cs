@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Test_project.DataBase.Interface;
+using Test_project.Entities;
 
 namespace Test_project.DataBase
 {
-    class MemoryConnector :IPersonConnecter<Person>
+    public class MemoryConnector :IPersonConnecter<Person>
     {
         List<Person> DB ;
         public MemoryConnector(List<Person> DB)
